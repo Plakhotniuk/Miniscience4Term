@@ -1,7 +1,6 @@
 #include <set>
 #include <gmsh.h>
-#include <iostream>
-using namespace std;
+
 
 void Points(double lc, double z, int index, double r){
     gmsh::model::geo::addPoint(0, 0, z, lc, index);
@@ -47,16 +46,13 @@ int main(int argc, char **argv)
 
     gmsh::model::geo::addPlaneSurface({1, 6},1);
 
-//    std::vector<std::pair<int, int> > ov2;
-
     std::vector<std::pair<int, int> > ov1;
-//    gmsh::model::geo::copy({{2, 1}}, ov1);
     gmsh::model::geo::revolve({{2, 1}}, 3., 0., 0., 0, 1, 0, -M_PI/2, ov1,
                               {5}, {1});
     std::vector<std::pair<int, int> > ov2;
     gmsh::model::geo::revolve({{2, 1}}, 3., 0., 0., 0, 1, 0, M_PI/2, ov2,
                               {5}, {1});
-//    gmsh::model::mesh::optimize("HighOrder", true);
+
     std::vector<std::pair<int, int> > ov3;
     gmsh::model::geo::copy({ov1}, ov3);
     gmsh::model::geo::mirror({ov3}, -6., 0., 0., 18.);
@@ -64,7 +60,6 @@ int main(int argc, char **argv)
     gmsh::model::geo::copy({ov2}, ov4);
     gmsh::model::geo::mirror({ov4}, -6., 0., 0., 18.);
 
-//    gmsh::model::mesh::recombine();
 
 
     gmsh::model::geo::synchronize();
