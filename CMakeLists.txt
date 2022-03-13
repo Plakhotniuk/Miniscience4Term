@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.17)
 set(CMAKE_CXX_STANDARD 17)
 
 project(Miniscience)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+#list(APPEND CMAKE_FIND_ROOT_PATH "/Users/arseniy/opt/anaconda3/pkgs/qt-5.9.7-h468cd18_1/lib/cmake/Qt5")
+
+#target_link_libraries(eCAD Qt5::Widgets Qt5::Core)
+
 #add_executable(cubic2d Lab2/cubic2d.cpp)
 #add_executable(cubic3d Lab2/cubic3d.cpp)
 #add_executable(tetr3d Lab2/tetr3d.cpp)
@@ -11,6 +17,7 @@ project(Miniscience)
 #find_package(VTK REQUIRED)
 # ... и подключим её со всеми её компонентами её нативными средствами
 #include(${VTK_USE_FILE})
+#list(APPEND CMAKE_PREFIX_PATH "/Users/arseniy/Documents/rip/Qt/5.12.1/gcc_64")
 
 # gmsh укажем явно по кусочкам (потому что он был просто распакован руками)
 add_library(gmsh SHARED IMPORTED)
@@ -38,10 +45,10 @@ set(GMSH_LIBRARY gmsh)
 add_executable(sample01 Lab1/sample01.cpp)
 add_executable(sample02 Lab1/sample02.cpp)
 add_executable(sample03 Lab1/sample03.cpp)
-add_executable(sample04 Lab1/sample04.cpp)
+add_executable(sample04 Lab1/Epizode1_Mesh_STL.cpp)
 add_executable(Epizode0 Lab1/Epizode0.cpp)
 add_executable(Circle Lab1/Circle.cpp)
-add_executable(Epizode1 Lab1/Epizode1.cpp)
+add_executable(Epizode1 Lab1/Epizode1_Extrude.cpp)
 
 
 # Укажем библиотеки для линковки
