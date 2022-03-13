@@ -47,8 +47,8 @@ add_executable(sample02 Lab1/sample02.cpp)
 add_executable(sample03 Lab1/sample03.cpp)
 add_executable(sample04 Lab1/Epizode1_Mesh_STL.cpp)
 add_executable(Epizode0 Lab1/Epizode0.cpp)
-add_executable(Circle Lab1/Circle.cpp)
 add_executable(Epizode1 Lab1/Epizode1_Extrude.cpp)
+add_executable(Epizode2 Lab1/Epizode2.cpp)
 
 
 # Укажем библиотеки для линковки
@@ -57,5 +57,6 @@ target_link_libraries(sample02 ${GMSH_LIBRARY})
 target_link_libraries(sample03 ${GMSH_LIBRARY})
 target_link_libraries(sample04 ${GMSH_LIBRARY})
 target_link_libraries(Epizode0 ${GMSH_LIBRARY})
-target_link_libraries(Circle ${GMSH_LIBRARY})
 target_link_libraries(Epizode1 ${GMSH_LIBRARY})
+target_link_libraries(Epizode2 ${GMSH_LIBRARY})
+
