@@ -4,27 +4,23 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(Miniscience)
 
-set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
-#list(APPEND CMAKE_FIND_ROOT_PATH "/Users/arseniy/opt/anaconda3/pkgs/qt-5.9.7-h468cd18_1/lib/cmake/Qt5")
+set(CMAKE_CXX_FLAGS "-std=c++11 -g")
 
-#target_link_libraries(eCAD Qt5::Widgets Qt5::Core)
-
-#add_executable(cubic2d Lab2/cubic2d.cpp)
-#add_executable(cubic3d Lab2/cubic3d.cpp)
-#add_executable(tetr3d Lab2/tetr3d.cpp)
+add_executable(cubic2d cubic2d.cpp)
+add_executable(cubic3d cubic3d.cpp)
+add_executable(tetr3d tetr3d.cpp)
 
 # Найдём VTK
-#find_package(VTK REQUIRED)
+find_package(VTK REQUIRED)
 # ... и подключим её со всеми её компонентами её нативными средствами
-#include(${VTK_USE_FILE})
-#list(APPEND CMAKE_PREFIX_PATH "/Users/arseniy/Documents/rip/Qt/5.12.1/gcc_64")
+include(${VTK_USE_FILE})
 
 # gmsh укажем явно по кусочкам (потому что он был просто распакован руками)
-add_library(gmsh SHARED IMPORTED)
+#add_library(gmsh SHARED IMPORTED)
 set_target_properties(gmsh PROPERTIES
-    IMPORTED_LOCATION "/Users/arseniy/Documents/gmsh-4.9.4-MacOSX-sdk/lib/libgmsh.4.9.dylib"
-    INTERFACE_INCLUDE_DIRECTORIES "/Users/arseniy/Documents/gmsh-4.9.4-MacOSX-sdk/include"
-)
+        IMPORTED_LOCATION "/Users/arseniy/Documents/gmsh-4.9.4-MacOSX-sdk/lib/libgmsh.4.9.dylib"
+        INTERFACE_INCLUDE_DIRECTORIES "/Users/arseniy/Documents/gmsh-4.9.4-MacOSX-sdk/include"
+        )
 set(GMSH_LIBRARY gmsh)
 
 # если бы gmsh был поставлен прилично, то можно было бы примерно вот так
@@ -34,29 +30,10 @@ set(GMSH_LIBRARY gmsh)
 
 # Укажем библиотеки для линковки
 # ... тут только VTK
-#target_link_libraries(cubic2d ${VTK_LIBRARIES})
-#target_link_libraries(cubic3d ${VTK_LIBRARIES})
-#
-## ... а тут ещё и gmsh
-#target_link_libraries(tetr3d ${VTK_LIBRARIES})
-#target_link_libraries(tetr3d ${GMSH_LIBRARY})
+target_link_libraries(cubic2d ${VTK_LIBRARIES})
+target_link_libraries(cubic3d ${VTK_LIBRARIES})
 
-
-add_executable(sample01 Lab1/sample01.cpp)
-add_executable(sample02 Lab1/sample02.cpp)
-add_executable(sample03 Lab1/sample03.cpp)
-add_executable(sample04 Lab1/Epizode1_Mesh_STL.cpp)
-add_executable(Epizode0 Lab1/Epizode0.cpp)
-add_executable(Epizode1 Lab1/Epizode1_Extrude.cpp)
-add_executable(Epizode2 Lab1/Epizode2.cpp)
-
-
-# Укажем библиотеки для линковки
-target_link_libraries(sample01 ${GMSH_LIBRARY})
-target_link_libraries(sample02 ${GMSH_LIBRARY})
-target_link_libraries(sample03 ${GMSH_LIBRARY})
-target_link_libraries(sample04 ${GMSH_LIBRARY})
-target_link_libraries(Epizode0 ${GMSH_LIBRARY})
-target_link_libraries(Epizode1 ${GMSH_LIBRARY})
-target_link_libraries(Epizode2 ${GMSH_LIBRARY})
+# ... а тут ещё и gmsh
+target_link_libraries(tetr3d ${VTK_LIBRARIES})
+target_link_libraries(tetr3d ${GMSH_LIBRARY})
 
